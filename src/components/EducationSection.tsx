@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Award, BookOpen } from "lucide-react";
+import { GraduationCap, Award, BookOpen, Cloud, Code } from "lucide-react";
 
 const education = [
   {
@@ -9,6 +9,7 @@ const education = [
     institution: "Lovely Professional University, Phagwara, Punjab",
     period: "Aug '23 - Present",
     detail: "CGPA: 7.13",
+    description: "Specializing in Computer Science with a focus on Data Science, ML, and Full-Stack Development.",
   },
   {
     icon: BookOpen,
@@ -26,27 +27,27 @@ const education = [
   },
 ];
 
-const certifications = [
-  { name: "GenAI Powered Data Analytics Job Simulation", org: "Tata", link: "https://www.theforage.com/achievements" },
-  { name: "Cloud Computing NPTEL Certification", org: "NPTEL", link: "https://internalapp.nptel.ac.in/B2C/exam_form/candidate_login/candidate_scores.php?courseid=noc25-cs107" },
-  { name: "OCI 2025 Data Science Professional", org: "Oracle", link: "https://catalog-education.oracle.com/apex/f?p=1010:26:116554173776615" },
-  { name: "API Student Expert", org: "Postman", link: "https://www.postman.com/sravanth6115" },
-  { name: "English Grammar Pro (A1–C1)", org: "Udemy", link: "https://www.udemy.com/certificate/UC-7c91b605-fc62-4f5e-89b0-ae50638860f5/" },
-];
-
-const training = [
+const experience = [
   {
+    icon: Cloud,
     title: "Google Cloud Program Participant",
     org: "Google Arcade",
     period: "May '25 – Dec '25",
-    desc: "Completed intensive training on GCP services, cloud architecture, IAM security, and scalable infrastructure design.",
+    description: "Completed intensive training on GCP services, cloud architecture, IAM security, and scalable infrastructure design.",
   },
   {
+    icon: Code,
     title: "Data Structures and Algorithms",
     org: "Self-Study",
     period: "Jun '25 - Jul '25",
-    desc: "Built strong foundations in complexity analysis, recursion, and OOP problem solving with arrays, trees, graphs, and DP.",
+    description: "Built strong foundations in complexity analysis, recursion, and OOP problem solving with arrays, trees, graphs, and DP.",
   },
+];
+
+const achievements = [
+  "Developed a scalable solution during HackSmart, a company-level hackathon by Battery Smart × AWS (Feb '26)",
+  "Earned a Python badge on HackerRank for proven problem-solving skills (May '25)",
+  "Solved 100+ LeetCode problems with consistent daily practice and strong algorithmic optimization",
 ];
 
 const EducationSection = () => {
@@ -62,107 +63,83 @@ const EducationSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary font-mono text-sm mb-2">04. Background</p>
+          <p className="text-primary font-mono text-sm mb-2">02. Education & Experience</p>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Education & <span className="gradient-text">Credentials</span>
+            Education & <span className="gradient-text">Experience</span>
           </h2>
         </motion.div>
 
-        {/* Education Timeline */}
-        <div className="mb-16">
-          <h3 className="text-xl font-semibold mb-8 text-primary">Education</h3>
-          <div className="space-y-6">
-            {education.map((edu, i) => (
-              <motion.div
-                key={edu.title}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="flex gap-4 p-5 rounded-xl border border-border bg-card hover:border-primary/30 transition-all"
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <edu.icon className="text-primary" size={22} />
-                </div>
-                <div className="flex-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                    <h4 className="font-semibold">{edu.title}</h4>
-                    <span className="text-xs font-mono text-primary">{edu.period}</span>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Center line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+
+          <div className="space-y-8">
+            {[...education.map((e, i) => ({ ...e, type: "edu" as const, idx: i })), ...experience.map((e, i) => ({ ...e, type: "exp" as const, idx: education.length + i }))].map((item, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: i * 0.12 }}
+                  className={`relative flex items-start gap-4 md:gap-0 ${isLeft ? "md:pr-[52%]" : "md:pl-[52%]"}`}
+                >
+                  {/* Dot */}
+                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary border-2 border-background -translate-x-1.5 mt-5 z-10" />
+
+                  {/* Card */}
+                  <div className="ml-10 md:ml-0 flex-1 p-5 rounded-xl border border-border bg-card hover:border-primary/30 transition-all group">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                        {"icon" in item && <item.icon className="text-primary" size={20} />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                          <h4 className="font-semibold text-sm">{item.title}</h4>
+                          <span className="text-xs font-mono text-primary whitespace-nowrap">{item.period}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          {"institution" in item ? item.institution : "org" in item ? item.org : ""}
+                        </p>
+                        {"detail" in item && item.detail && (
+                          <p className="text-sm font-medium text-primary mt-1">{item.detail}</p>
+                        )}
+                        {"description" in item && item.description && (
+                          <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{item.description}</p>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">{edu.institution}</p>
-                  <p className="text-sm font-medium text-primary mt-1">{edu.detail}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Training */}
-        <div className="mb-16">
-          <h3 className="text-xl font-semibold mb-8 text-primary">Training</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {training.map((t, i) => (
-              <motion.div
-                key={t.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                className="p-5 rounded-xl border border-border bg-card"
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <h4 className="font-semibold text-sm">{t.title}</h4>
-                  <span className="text-xs font-mono text-primary whitespace-nowrap ml-2">{t.period}</span>
-                </div>
-                <p className="text-xs text-primary mb-2">{t.org}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="mb-16">
-          <h3 className="text-xl font-semibold mb-8 text-primary">Certifications</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {certifications.map((cert, i) => (
-              <motion.a
-                key={cert.name}
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-                className="group p-4 rounded-xl border border-border bg-card hover:border-primary/40 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5"
-              >
-                <p className="text-sm font-medium group-hover:text-primary transition-colors">{cert.name}</p>
-                <p className="text-xs text-muted-foreground mt-1">{cert.org}</p>
-              </motion.a>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
         {/* Achievements */}
-        <div>
-          <h3 className="text-xl font-semibold mb-8 text-primary">Achievements</h3>
-          <div className="space-y-3">
-            {[
-              "Developed a scalable solution during HackSmart, a company-level hackathon by Battery Smart × AWS (Feb '26)",
-              "Earned a Python badge on HackerRank for proven problem-solving skills (May '25)",
-              "Solved 100+ LeetCode problems with consistent daily practice and strong algorithmic optimization",
-            ].map((ach, i) => (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-16"
+        >
+          <h3 className="text-xl font-semibold mb-6 text-primary text-center">Achievements</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {achievements.map((ach, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                className="flex items-start gap-3 p-4 rounded-lg border border-border bg-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
+                className="flex items-start gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-all"
               >
-                <span className="text-primary mt-0.5">▹</span>
-                <p className="text-sm text-muted-foreground">{ach}</p>
+                <span className="text-primary text-lg mt-0.5">🏆</span>
+                <p className="text-sm text-muted-foreground leading-relaxed">{ach}</p>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
