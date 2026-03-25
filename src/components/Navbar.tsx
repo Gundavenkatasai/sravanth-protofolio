@@ -35,7 +35,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         <a href="#" className="text-xl font-bold gradient-text">
-          &lt;Sravanth /&gt;
+          Sravanth
         </a>
 
         <div className="hidden lg:flex items-center gap-6">

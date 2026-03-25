@@ -9,19 +9,16 @@ const marqueeItems = ["Python", "Data Science", "Machine Learning", "AI", "React
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-padding pt-32">
-      {/* Background grid */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)",
         backgroundSize: "60px 60px",
       }} />
 
-      {/* Glowing orb */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[120px] animate-pulse-glow" />
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-primary/8 blur-[100px] animate-pulse-glow" style={{ animationDelay: "1s" }} />
 
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Text */}
           <div className="flex-1 text-center lg:text-left">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -29,7 +26,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-primary font-mono text-sm mb-4"
             >
-              Hi, I'm
+              Welcome to my portfolio
             </motion.p>
 
             <motion.h1
@@ -88,7 +85,6 @@ const HeroSection = () => {
               </a>
             </motion.div>
 
-            {/* Social links */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -115,7 +111,6 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Profile image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -131,14 +126,12 @@ const HeroSection = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Floating decorations */}
               <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-primary/20 animate-float" />
               <div className="absolute -bottom-2 -left-6 w-6 h-6 rounded-full bg-primary/30 animate-float" style={{ animationDelay: "1.5s" }} />
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -151,7 +144,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Marquee */}
       <div className="absolute bottom-0 left-0 right-0 py-4 border-t border-border bg-background/80 backdrop-blur-sm overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (

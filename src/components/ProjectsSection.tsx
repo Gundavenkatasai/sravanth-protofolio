@@ -64,7 +64,6 @@ const ProjectsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary font-mono text-sm mb-2">04. Projects</p>
           <h2 className="text-3xl md:text-4xl font-bold">
             Featured <span className="gradient-text">Work</span>
           </h2>
@@ -79,7 +78,6 @@ const ProjectsSection = () => {
               transition={{ duration: 0.5, delay: i * 0.12 }}
               className="group relative rounded-xl border border-border bg-card overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 flex flex-col"
             >
-              {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
@@ -99,11 +97,9 @@ const ProjectsSection = () => {
                 <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
                   {project.description}
                 </p>
-
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.tech.map((t) => (
                     <span key={t} className="px-2 py-0.5 text-[11px] rounded bg-secondary text-secondary-foreground font-mono">
@@ -111,26 +107,13 @@ const ProjectsSection = () => {
                     </span>
                   ))}
                 </div>
-
                 <div className="flex gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Github size={16} />
-                    Code
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Github size={16} /> Code
                   </a>
                   {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      Live Demo
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                      <ExternalLink size={16} /> Live Demo
                     </a>
                   )}
                 </div>
@@ -151,8 +134,7 @@ const ProjectsSection = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-muted-foreground hover:text-primary hover:border-primary transition-all text-sm"
           >
-            <Github size={16} />
-            View All Projects on GitHub
+            <Github size={16} /> View All Projects on GitHub
           </a>
         </motion.div>
       </div>

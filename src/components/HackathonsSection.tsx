@@ -36,7 +36,6 @@ const HackathonsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-6"
         >
-          <p className="text-primary font-mono text-sm mb-2">05. Hackathons</p>
           <h2 className="text-3xl md:text-4xl font-bold">
             Hackathon <span className="gradient-text">Participation</span>
           </h2>
@@ -60,62 +59,30 @@ const HackathonsSection = () => {
               transition={{ duration: 0.6, delay: i * 0.2 }}
               className="group rounded-xl border border-border bg-card overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10"
             >
-              {/* Image */}
               <div className="relative h-56 overflow-hidden">
-                <img
-                  src={hack.image}
-                  alt={hack.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
-                  width={800}
-                  height={512}
-                />
+                <img src={hack.image} alt={hack.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" width={800} height={512} />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
-                {/* Badge */}
                 <div className="absolute top-4 left-4 flex items-center gap-2 bg-primary/90 text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm">
-                  <Trophy size={14} />
-                  {hack.badge}
+                  <Trophy size={14} /> {hack.badge}
                 </div>
               </div>
-
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                  {hack.title}
-                </h3>
-
-                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
-                  {hack.description}
-                </p>
-
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{hack.title}</h3>
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{hack.description}</p>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {hack.tech.map((t) => (
-                    <span key={t} className="px-2.5 py-1 text-xs rounded-full bg-primary/10 text-primary font-mono border border-primary/20">
-                      {t}
-                    </span>
+                    <span key={t} className="px-2.5 py-1 text-xs rounded-full bg-primary/10 text-primary font-mono border border-primary/20">{t}</span>
                   ))}
                 </div>
-
                 <div className="flex gap-4">
                   {hack.github && (
-                    <a
-                      href={hack.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Github size={16} />
-                      Code
+                    <a href={hack.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                      <Github size={16} /> Code
                     </a>
                   )}
                   {hack.live && (
-                    <a
-                      href={hack.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      Live Demo
+                    <a href={hack.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                      <ExternalLink size={16} /> Live Demo
                     </a>
                   )}
                 </div>
